@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Employee } from '../employee';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EmployeeService } from '../employee.service';
+import { EmployeeService } from '../../employee.service';
+import { Employee } from '../employee';
 
 @Component({
   selector: 'app-update-employee',

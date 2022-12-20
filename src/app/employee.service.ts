@@ -16,9 +16,16 @@ export class EmployeeService {
       let queryParams = new HttpParams();
       queryParams = queryParams.append("id",id);
       return this.http.get(this.baseUrl+"/es",{params:queryParams});
-//     return this.http.get(`${this.baseUrl}/${id}`);
+//    return this.http.get(`${this.baseUrl}/${id}`);
   }
 
+getEmployeeByEmail(emailId: string): Observable<any> {
+
+      let queryParams = new HttpParams();
+      queryParams = queryParams.append("emailId",emailId);
+      return this.http.get(this.baseUrl+"/email",{params:queryParams});
+//    return this.http.get(`${this.baseUrl}/${id}`);
+  }
   createEmployee(employee: Object): Observable<Object> {
     return this.http.post(`${this.baseUrl}`, employee);
   }

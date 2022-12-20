@@ -14,6 +14,10 @@
     <div class="form-group">
       <label for="name">Email</label>
       <input type="text" class="form-control" id="emailId" required [(ngModel)]="employee.emailId" name="emailId">
+      <div [hidden]="!error" >
+        <app-validation [error] = "errorMessage"></app-validation>
+      </div>
+
     </div>
 
     <button type="submit" class="btn btn-success">Submit</button>
@@ -24,3 +28,5 @@
   <h4>You submitted successfully!</h4>
   <!-- <button class="btn btn-success" (click)="newEmployee()">Add</button> -->
 </div>
+
+
