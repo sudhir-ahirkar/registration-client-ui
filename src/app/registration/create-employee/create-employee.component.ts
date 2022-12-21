@@ -31,52 +31,30 @@ export class CreateEmployeeComponent implements OnInit {
 
     this.employeeService.createEmployee(this.employee)
       .subscribe(data => console.log(data), error => console.log(error));
-      this.employee = new Employee();
-      this.gotoList();
+    this.employee = new Employee();
+    this.gotoList();
   }
 
   onSubmit() {
+    let response = this.employeeService.getEmployeeByEmail(this.employee.emailId)
+      .subscribe(
+        data => {
+          if (data == null) {
+            this.submitted = true;
+            this.save();
+          } else {
+            this.error = true;
+            this.errorMessage = "Entered email already exists";
+            this.submitted = false;
+          }
+          console.log("data==>", data);
+        },
+        error => {
+          console.log("error==>", error);
 
-
-    let response =  this.employeeService.getEmployeeByEmail(this.employee.emailId)
-                        .subscribe(
-                          data => {
-
-                              if(data == null) {
-
-                                        this.submitted = true;
-                                        this.save();
-                              }else{
-                                      this.error = true;
-                                      this.errorMessage = this.employee.emailId + " already exists";
-                                      this.submitted = false;
-                                    }
-                            console.log("data==>", data);
-
-                           },
-                          error => {
-                         /*       if(error.error != null) {
-
-                                         this.submitted = true;
-                                          this.save();
-                                }else{
-                                        this.error = true;
-                                        this.submitted = false;
-                                      }
-                             this.submitted = true;
-                             this.error = false; */
-                              console.log("error==>", error);
-
-                          });
-
-      console.log("response==>",response)
-
-
+        });
+    console.log("response==>", response);
   }
-
-
-
-
 
   gotoList() {
     this.router.navigate(['/employees']);

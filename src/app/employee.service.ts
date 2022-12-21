@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { BaseUrl } from './shared/constant/url-constant';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
 
-  private baseUrl = 'http://localhost:8080/emp-registration-api/api/v1/employees';
+  private baseUrl = `${BaseUrl.Registration}`;
 
   constructor(private http: HttpClient) { }
 
